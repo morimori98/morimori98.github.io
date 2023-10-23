@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 {% include head.html %}
+<!-- フレックスコンテナ -->
 <body>
+<!-- 1番目のフレックスアイテムになれるが、position: fixedが指定されているのでそうならない -->
 {% include header.html %}
 
-{{ content }}
+<!-- 2番目のフレックスアイテム: これだけが自動でサイズ変更される -->
+<div class="content-container">
+  {{ content }}
+</div>
 
+<!-- 3番目のフレックスアイテムだが、flex: プロパティがないのでそうならない -->
 {% include footer.html %}
 </body>
 </html>
