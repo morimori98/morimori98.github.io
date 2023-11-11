@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ホーム画面追加ガイダンス</title>
+  <style>
+    #installBanner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #f8f9fa;
+      padding: 10px;
+      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+      display: none; /* 初期状態では非表示にしておく */
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    #closeBanner {
+      padding: 5px 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="installBanner">
+  <p>アプリをインストール:</p>
+  <ol>
+    <li>ブラウザの共有ボタンをタップ</li>
+    <li>「ホーム画面に追加」を選択</li>
+  </ol>
+  <button id="closeBanner">閉じる</button>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+    // バナーが以前に閉じられたかを確認
+    if (localStorage.getItem('installBannerDismissed') !== 'true') {
+      setTimeout(() => {
+        const installBanner = document.getElementById('installBanner');
+        installBanner.style.display = 'flex'; // バナーを表示
+      }, 5000); // 5秒後にバナーを表示
+    }
+
+    const closeBanner = document.getElementById('closeBanner');
+    closeBanner.addEventListener('click', () => {
+      const installBanner = document.getElementById('installBanner');
+      installBanner.style.display = 'none'; // バナーを非表示にする
+      localStorage.setItem('installBannerDismissed', 'true'); // この情報を保存
+    });
+  });
+</script>
+</body>
+</html>
